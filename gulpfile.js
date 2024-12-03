@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
+const imagemin = require('gulp-imagemin');
 
 function styles() {
     return gulp.src('./src/styles/*.scss')
@@ -8,7 +9,15 @@ function styles() {
         .pipe(gulp.dest('./dist/css'));
 }
 
-exports.default = styles;
+function images() {
+    //"**" = PROCURA NAS PASTAS E SUBPASTAS - "*" = ENCONTRA QUALQUER ARQUIVO -- "../" = SAI DA PASTA
+    return gulp.src('./src/images/**/*') 
+        .pipe(imagemin())
+        .pipe(gulp.dest('./dist/images'));
+}
+
+exports.default = gulp.parallel(styles, images);
+
 exports.watch = function(){
     gulp.watch('./src/styles/*.scss', {ignoereInitial: false} , gulp.parallel(styles))
 }
