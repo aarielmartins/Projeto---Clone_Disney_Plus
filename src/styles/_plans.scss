@@ -1,0 +1,44 @@
+.plans{
+    padding: 5.6vw;
+
+    h2{
+        text-align: center;
+    }
+
+    &__list{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        
+        &__item{
+        text-align: center;
+        padding: 60px 44px 44px;
+        max-width: 380px;
+        width: 100%;
+
+        // ESTE PSEUDOSELETOR SERVE PARA SELECIONAR 1 DOS 3 LI QUE TEMOS NO HTML
+        &:nth-child(2){
+            // CRIA UM BG PRO CONAINER
+            background-image: url(../images/fundo_combo_plus.png);
+            //NÃO DEIXA A IMAGEM SE REPETIR
+            background-repeat: no-repeat;
+            //REDIMENSIONA A IMAGEM PARA OCUPAR LARGURA E ALTURA DO CONTAINER
+            background-size: contain;
+        }
+            
+        img{
+            height: 83px;
+        }
+        
+        strong{
+            display: block;
+            margin-top: 24px;
+        }
+
+        }
+    }
+
+    p{
+        text-align: center;
+    }
+}
