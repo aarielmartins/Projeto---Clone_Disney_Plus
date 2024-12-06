@@ -2,6 +2,7 @@
 @use 'hero'; //PODE PASSAR SEM .SCSS E _, POIS O SASS MESMO RESOLVE
 @use 'shows';
 @use 'plans';
+@use 'watch-anywhere';
 
 //PARA CRIAR UMA FONTE QUE NÃO EXISTE NO GOOGLE FONTS (E PRECISA BAIXAR) SE USA:
 @font-face{
