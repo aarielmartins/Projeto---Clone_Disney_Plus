@@ -10,6 +10,10 @@
         grid-template-columns: 1fr 1fr 1fr; //CRIS 3 COLUNAS 
         gap: 24px;
 
+        @media (max-width: 768px){
+            grid-template-columns: 1fr 1fr;
+        }
+
         &--is-active{
             display: grid; //CRIA UM GRID
         }
@@ -25,6 +29,12 @@
     &__tabs{
         display: flex;
         justify-content: center;
+
+        @media (max-width: 768px){
+            white-space: nowrap; //FAZ COM QUE FIQUE TUDO NA MESMA LINHA MESMO QUE NÃO CAIBA NO CONTAINER
+            overflow-x: scroll; //CRIA A BARRA DE ROLAGEM LATERAL
+            padding-left: 20px; //PARA QUE O PRIMEIRO BOTÃO APAREÇA
+        }
         
         &__button{
             border: none;
@@ -36,6 +46,10 @@
             margin: 0 1vw;
             cursor: pointer;
             border-bottom: 5px solid transparent;
+
+            @media (max-width: 768px){
+                font-size: 16px;
+            }
 
             &--is-active{
                 border-color: variaveis.$corTextoSecundario;

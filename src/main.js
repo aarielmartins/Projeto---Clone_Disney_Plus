@@ -1,3 +1,6 @@
+//-------------------------------------------------------------------------------------
+//CÓDIGO DAS ABAS DE FILMES
+
 //O "DOMCONTENTLOADED" FUNCIONA PARA FAZER A PÁGINA SER TOTALMENTE CARREGADA 
 //ANTES DE EXECUTAR O CÓDIGO. É IMPORTANTE PARA QUE O JS NÃO TENTE ACESSAR 
 //ELEMENTOS COMO BOTÕES E ABAS SEM QUE ESTEJAM CARREGADOS
@@ -55,3 +58,71 @@ function escondeTodasAbas(){
 //
 //2) SEM PRECISAR DE UMA FUNÇÃO, RECUPERANDO NOME E VALOR DO ATRIBUTO:
 //variável.dataset
+//-------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------
+//CODIGO DAS ABAS DE FAQ
+
+document.addEventListener('DOMContentLoaded', function(){
+    //LOCALIZA NO HTML TODOS OS ELEMENTOS COM O ATRIBUTO "DATA-FAQ-QUESTION" E RETORNA UMA NODE LIST
+    const questions = document.querySelectorAll('[data-faq-question]');
+    
+    //PERCORRE O LISTA DE PERGUNTAS EM LOOP E ADICIONA UM OUVINTE DE EVENTOS PARA CAPTURAR O EVENTO "CLICK"
+    //QUANDO O "CLICK" ACONTECE EXECUTA-SE A FUNÇÃO "ABREOUFECHARESPOSTA"
+    for (let i =0; i < questions.length; i++){
+        questions[i].addEventListener('click', abreOuFechaResposta);
+    }
+})
+
+function abreOuFechaResposta(elemento){
+    //CRIA UM VARIÁVEL DE CADEIA DE CARACTERES PARA INSERIR NA CLASSE
+    const classe = 'faq__questions__item--is-open';
+    //ELEMENTO.TARGET É O ELEMENTO CLICADO, ENQUANTO O PARENTNODE É O ELEMENTO PAI, NO CASO O <LI>
+    const elementoPai = elemento.target.parentNode;
+    //O TOGGLE ADICIONA A CLASSE SE ELE NÃO ESTIVER INSERIDA, OU EXCLUI SE TIVER, POR CAUSA DO CLASSLIST
+    elementoPai.classList.toggle(classe);
+}
+//-------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------
+//APARECEREM OS ELEMENTOS EM HIDDEN APÓS A ROLAGEM PASSAR DA ALTURA DA PÁGINA
+
+document.addEventListener('DOMContentLoaded', function(){
+    //SELECIONA O HERO POIS VAI SER O PARÂMETRO DE ALTURA. QUEREMOS QUE OS ÍCONES EM HIDE APAREÇAM APÓS ELE
+    const heroSection = document.querySelector('.hero');
+    //O CLIENTHEIGHT RETORNA A ALTURA DO ELEMENTO EM PIXELS COM PADDING (MAS SEM MARGENS E BORDAS)
+    const alturaHero = heroSection.clientHeight;
+    
+    //WINDOW É UMA VARIÁVEL GLOBA, OU SEJA, NÃO PRECISA SER DECLARADA
+    //E REFERE-SE A JANELA DO NAVEGADOR, ENTÃO:
+    //ADICIONA-SE UM EVENTO DE OBSERVAR TODA A VEZ QUE HOUVER UM SCROLL NA JANELA
+    window.addEventListener('scroll', function(){
+        
+        //CRIA A VARIÁVEL DE SCROLL NA VERTICAL (Y), QUE RETORNA A POSIÇÃ VERTICAL DO SCROLL EM PIXELS
+        const posicaoAtual = window.scrollY;
+
+        //É MELHOR DESAPARECER QDO CHEGAR NA ALTURA DO HERO, PARA QUE A FUNÇÃO SEJA EXECUTADA MENOS VEZES
+        //POIS O JAVASCRIPT É EXECUTADO NO APARELHO
+        if (posicaoAtual < alturaHero){
+            ocultaElementosDoHeader();
+        } else{
+            exibeElementosDoHeader();
+        }
+    })
+})
+
+//SELECIONA O ELEMENTO HEADER E ADICIONA A CLASSE
+function ocultaElementosDoHeader(){
+    const header = document.querySelector('header');
+    header.classList.add('header--is-hidden');
+}
+
+//SELECIONA O ELEMENTO HEADER E REMOVE A CLASSE
+function exibeElementosDoHeader(){
+    const header = document.querySelector('header');
+    header.classList.remove('header--is-hidden');
+}
+
+//-------------------------------------------------------------------------------------
